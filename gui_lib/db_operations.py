@@ -221,7 +221,6 @@ def check_lendings(id):
 def get_free_specs():
     conn = sqlite3.connect('resources/library.db')
     c = conn.cursor()
-    # wolne egzemplarze
     c.execute("""SELECT books.ID ,author, title, resource_path FROM specimens
                     JOIN books ON specimens.book_id=books.ID
                     WHERE is_lend = "false" 
@@ -229,4 +228,6 @@ def get_free_specs():
     free_spec = c.fetchall()
     free_spec = list(dict.fromkeys(free_spec))
     return free_spec
+
+# Uncomment before first use
 #create_db()
